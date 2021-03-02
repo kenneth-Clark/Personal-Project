@@ -24,10 +24,11 @@ namespace WebApplication3
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)// dri
         {
             services.AddControllers();
             services.AddSingleton<ITodoRepository, toDoRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

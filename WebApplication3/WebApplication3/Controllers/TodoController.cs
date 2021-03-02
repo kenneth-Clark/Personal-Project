@@ -25,12 +25,30 @@ namespace WebApplication3.Controllers
         }
         [HttpGet]
         [Route("")]
-        [Route("{eventName}/{name}/{middleName}/{lastName}/{Address}/{id}")]
-        public ActionResult GetById(string eventName, String name, String middleName, String lastName, String Address, String id)
+        [Route("{eventName}/{name}/{middleName}/{lastName}/{Address}/{id}/{ContactNumber}/{Spouse}/{Mother}/{Father}/{Age}/{Occupation}")]
+        public ActionResult GetById(string eventName, String name, String middleName, String lastName, String Address, String id, String ContactNumber, String Spouse, String Mother, String Father, String Age, String Occupation)
         {
             var item = TodoItems;
             var defaultResponse = new MotherClass();
-            if (eventName == "Find")
+            if (eventName == "FindAll")
+            {
+                var events = item.FindAll();
+                if (events == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(events);
+            }
+            else if (eventName == "Login")
+            {
+                var events = item.Login(name, middleName);
+                if (events == null)
+                {
+                    return NotFound();
+                }
+                return new ObjectResult(events);
+            }
+            else if (eventName == "Find")
             {
                 var events = item.Find(id);
                 if (events == null)
@@ -50,7 +68,7 @@ namespace WebApplication3.Controllers
             }
             else if (eventName == "Update")
             {
-                var events = item.Update(name, middleName, lastName, Address,id);
+                var events = item.Update(name, middleName, lastName, Address, id, ContactNumber, Spouse, Mother, Father, Age, Occupation);
                 if (events == null)
                 {
                     return NotFound();
@@ -59,7 +77,7 @@ namespace WebApplication3.Controllers
             }
             else if (eventName == "Add")
             {
-                var events = item.Add(name,middleName,lastName,Address);
+                var events = item.Add(name, middleName, lastName, Address, id, ContactNumber, Spouse, Mother, Father, Age, Occupation);
                 if (events == null)
                 {
                     return NotFound();
