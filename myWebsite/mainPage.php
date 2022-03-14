@@ -1,31 +1,3 @@
-
-<?php
-	$conn_array = array (
-		"UID" => "sa",
-		"PWD" => "Admin123!",
-		"Database" => "localb",
-	);
-	$conn = sqlsrv_connect('ZOZOSQLSERVER', $conn_array);
-	if ($conn){
-		$params = array($_POST["uname"],$_POST["psw"]);
-		if(($result = sqlsrv_query($conn,"SELECT auName from tAdminUsers Where auloginName =? and auPassword =?", $params)) != false){
-			$row_count = sqlsrv_has_rows($result);
-			if( $row_count  == false)
-			{
-				echo "<script> var r = alert('Login Failed!'); if (r == r) { window.location.href='http://localhost:8080/myWebsite/todd.php'; } </script>";
-			}
-			else
-			{
-				while( $obj = sqlsrv_fetch_object( $result )) {
-					//echo $obj->auName.'<br/>';
-				}
-			}
-		}
-	}else{
-		die(print_r(sqlsrv_errors(), true));
-	}
-	?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -165,8 +137,8 @@ body, html {
 </head>
 <body>
 <button class="tablink" onclick="openPage2('Home2', this, 'black')"id="defaultOpen">VIEW ALL USER</button>
-<button class="tablink" onclick="openPage('Home', this, 'black')">SEARCH USER</button>
-<button class="tablink" onclick="openPage('News', this, 'black')">ADD</button>
+<button class="tablink" onclick="openPage('Home', this, 'black')" id="myBtn">SEARCH USER</button>
+<button class="tablink" onclick="openPage('News', this, 'black')" id ="AddTab">ADD</button>
 <button class="tablink" onclick="BackToHome()">HOME</button>
 <div id="Home2" class="tabcontent">
 	<div class="tableFixHead">
@@ -256,7 +228,7 @@ function openPage2(pageName,elmnt,color) {
   }
   document.getElementById(pageName).style.display = "block";
   elmnt.style.backgroundColor = color;
-  ViewAllButton();
+  LoginFunction();
 }
 
 // Get the element with id="defaultOpen" and click on it
@@ -288,41 +260,61 @@ function cancelButton()
 	$('#btnCancel').hide();
     SearchButton();
 }
-function ajax_test()
- {
-	var value = "1";
-	alert("shit2!");
-    $.ajax({
-		url:"http://localhost:8080/myWebsite/myViewAllCode.php",
-            type: "post",    //request type,
-            dataType: 'json',
-			//crossDomain: true,
-			data: {id:value},
-        success: function(response)
-        {
-			alert("atay ba!");
-			var datashit = jQuery.parseJSON(response);
-			//alert(datashit);
+ function LoginFunction()
+{
+	
+	var username = sessionStorage.getItem('userName')
+	var password = sessionStorage.getItem('userPassWord')
+	
 
-        },
-		error: function(data, errorThrown)
+	$.ajax({
+            url:"http://localhost:8080/myWebsite/myLoginCode.php",
+            type: "POST",
+            dataType: 'json',
+			data: {uname:username,psw:password},
+			cache: false,
+            success:function(result)
+			{
+				var datas = jQuery.parseJSON(JSON.stringify(result));
+				if($("#location2 td").length > 0)
+				{
+					$("#location2 td").remove();
+				}
+				if(datas.responsCode == "1")
+				{	
+					if(datas.accountType != "ADMIN")
+					{
+						document.getElementById("myBtn").disabled = true;
+						document.getElementById("AddTab").disabled = true;		
+						document.getElementById("myBtn").style.backgroundColor = "red";
+						document.getElementById("AddTab").style.backgroundColor = "red";
+					}
+					ViewAllButton(); 
+				}
+				else
+				{
+					var r = alert('Login Failed!'); if (r == r) { window.location.href='http://localhost:8080/myWebsite/todd.php'; }
+				}
+            },
+			error: function(data, errorThrown)
           {
-              alert('request failed :'+errorThrown);
+              alert('request failed 2:'+errorThrown);
           }
-    });
- }
+        });
+}
+
 function ViewAllButton()
 {
-	var value = "1";//$("#myValue").val();
-	//alert("jawa!");
+	var value = "1";
 	$.ajax({
             url:"http://localhost:8080/myWebsite/myViewAllCode.php",
             type: "POST",    //request type,
-            dataType: 'json',
+            dataType: 'Json',
 			data: {id:value},
 			cache: false,
             success:function(result)
 			{
+				console.log(result);
 				var datas = jQuery.parseJSON(JSON.stringify(result));
 				if($("#location2 td").length > 0)
 				{
@@ -349,7 +341,7 @@ function ViewAllButton()
             },
 			error: function(data, errorThrown)
           {
-              alert('request failed :'+errorThrown);
+              alert('request failed 2:'+errorThrown + data);
           }
         });
 }
@@ -387,7 +379,7 @@ function SearchButton()
             },
 			error: function(data, errorThrown)
           {
-              alert('request failed :'+errorThrown);
+              alert('request failed 3:'+errorThrown);
           }
         });
 }
@@ -413,7 +405,7 @@ function SaveButton()
             },
 			error: function(data, errorThrown)
           {
-              alert('request failed :'+errorThrown);
+              alert('request failed 4:'+errorThrown);
           }
         });
 }
@@ -441,7 +433,7 @@ function InsertSaveButton()
             },
 			error: function(data, errorThrown)
           {
-              alert('request failed :'+errorThrown);
+              alert('request failed 5:'+errorThrown);
           }
         });
 }
@@ -461,7 +453,7 @@ function DeleteButton()
 				},
 				error: function(data, errorThrown)
 			{
-				alert('request failed :'+errorThrown);
+				alert('request failed 6:'+errorThrown);
 			}
 			});
 	} 
