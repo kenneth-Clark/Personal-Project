@@ -1,0 +1,10 @@
+C:\Users\ndoua\source\repos\MyWcfWebApplication\obj\Debug\MyWcfWebApplication.csprojAssemblyReference.cache
+C:\Users\ndoua\source\repos\MyWcfWebApplication\obj\Debug\MyWcfWebApplication.csproj.CoreCompileInputs.cache
+C:\Users\ndoua\source\repos\MyWcfWebApplication\bin\MyWcfWebApplication.dll.config
+C:\Users\ndoua\source\repos\MyWcfWebApplication\bin\MyWcfWebApplication.dll
+C:\Users\ndoua\source\repos\MyWcfWebApplication\bin\MyWcfWebApplication.pdb
+C:\Users\ndoua\source\repos\MyWcfWebApplication\obj\Debug\MyWcfWebApplication.dll
+C:\Users\ndoua\source\repos\MyWcfWebApplication\obj\Debug\MyWcfWebApplication.pdb
+C:\Users\ndoua\source\repos\MyWcfWebApplication\bin\Newtonsoft.Json.dll
+C:\Users\ndoua\source\repos\MyWcfWebApplication\bin\Newtonsoft.Json.xml
+C:\Users\ndoua\source\repos\MyWcfWebApplication\obj\Debug\MyWcfWebApplication.csproj.CopyComplete

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyAndriodClient.TabbedPage1">
+
+    <ContentPage Title="VIEW ALL USER INFORMATION">
+        <StackLayout>
+            <Frame BackgroundColor="DarkCyan" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" FontSize="Large">ID</Label>
+                    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" FontSize="Large">FIRST NAME</Label>
+                    <Label Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" FontSize="Large">MIDDLE NAME</Label>
+                    <Label Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" FontSize="Large">LASTNAME</Label>
+
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="0" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="1" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="2" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="3" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                </Grid>
+            </Frame>
+            <ListView ItemsSource ="{Binding datagrids}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="0" BorderColor="Black">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition ></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" HorizontalOptions="Center" TextColor="Black"></Label>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding FirstName}"   HorizontalOptions="Center" TextColor="Black"></Label>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding MiddleName}" HorizontalOptions="Center" TextColor="Black"></Label>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding LastName}"  HorizontalOptions="Center" TextColor="Black"></Label>
+
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="0" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="1" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="2" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="3" BackgroundColor="black" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="SEARCH INFORMATION" BackgroundColor="DarkCyan">
+
+        <StackLayout>
+            <Entry Placeholder="INPUT ID" x:Name="SearchTextId"/>
+            <Entry Placeholder="First Name" x:Name="SearchTextFirstName" IsEnabled="False"/>
+            <Entry Placeholder="Middle Name" x:Name="SearchTextMiddleName" IsEnabled="False"/>
+            <Entry Placeholder="Last Name" x:Name="SearchTextLastName" IsEnabled="False"/>
+            <Button Text="SEARCH" Clicked="SearhId_Event" x:Name="SearchIdButton" BackgroundColor="Black" TextColor="White"/>
+            <Button Text="UPDATE" Clicked="Update_Event" x:Name="UpdateButton" IsEnabled="False" BackgroundColor="Black" TextColor="White"/>
+            <Button Text="DELETE" Clicked="Delete_Event" x:Name="DeleteButton" IsEnabled="False" BackgroundColor="Black" TextColor="White" />
+            <Button Text="CANCEL" Clicked="Cancel_Event" x:Name="CancelButton" BackgroundColor="Black" TextColor="White"/>
+        </StackLayout>
+
+    </ContentPage>
+    <ContentPage Title="ADD INFORMATION" BackgroundColor="DarkCyan">
+
+        <StackLayout>
+
+            <Entry Placeholder="First Name" x:Name="TextFirstName"/>
+            <Entry Placeholder="Middle Name" x:Name="TextMiddleName"/>
+            <Entry Placeholder="Last Name" x:Name="TextLastName"/>
+            <Button Text="REGISTER" Clicked="Button_Clicked" BackgroundColor="Black" TextColor="White"/>
+            <Button Text="CANCEL" Clicked="Button_Clicked_1" BackgroundColor="Black" TextColor="White"/>
+        </StackLayout>
+
+    </ContentPage>
+
+</TabbedPage>

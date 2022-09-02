@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyAndriodClient.Page2">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="BurlyWood" Padding="0" BorderColor="DarkSlateGray">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center">ID</Label>
+                    <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center">FIRST NAME</Label>
+                    <Label Grid.Row="0" Grid.Column="2" HorizontalOptions="Center">MIDDLE NAME</Label>
+                    <Label Grid.Row="0" Grid.Column="3" HorizontalOptions="Center">LASTNAME</Label>
+                
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="1" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="2" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="3" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                </Grid>
+            </Frame>
+            <ListView ItemsSource ="{Binding datagrids}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="0" BorderColor="DarkSlateGray">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition ></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                        <ColumnDefinition Width="100"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}" HorizontalOptions="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding FirstName}"   HorizontalOptions="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding MiddleName}" HorizontalOptions="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding LastName}"  HorizontalOptions="Center"></Label>
+                                    
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="1" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="2" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                    <BoxView WidthRequest="1" Grid.Row="0" Grid.Column="3" BackgroundColor="LightGray" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"></BoxView>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
